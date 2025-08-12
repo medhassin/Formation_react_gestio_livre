@@ -1,7 +1,9 @@
 import React from "react";
+import { useParams } from "react-router";
 
 function BookDetails() {
-  return <div>BookDetails</div>;
+  let p = useParams();
+  return <div>Book with ID = {p.filmId} </div>;
 }
 
 export default BookDetails;

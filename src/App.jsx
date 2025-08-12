@@ -20,7 +20,7 @@ function App() {
     <Route path="/all" element={<AllBooks></AllBooks>}></Route>
     <Route path="/Favourites" element={<Favourites></Favourites>}></Route>
     <Route path="/add" element={<AddBook></AddBook>}></Route>
-    <Route path="/films/:id" element={<BookDetails></BookDetails>}></Route>
+    <Route path="/films/:filmId" element={<BookDetails></BookDetails>}></Route>
 
     </Routes>
     </>
