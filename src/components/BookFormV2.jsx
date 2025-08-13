@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./BookForm.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 function BookFormV2() {
   let titleRef = useRef("");
@@ -9,6 +10,7 @@ function BookFormV2() {
   let SummaryRef = useRef("");
   let authorRef = useRef("");
   let imageRef = useRef("");
+  let navigate = useNavigate();
 
   let [authors, setAuthors] = useState([]);
   useEffect(() => {
@@ -29,14 +31,39 @@ function BookFormV2() {
 
   function submitHandler(e) {
     e.preventDefault();
-    console.log({
+    let newBook = {
       title: titleRef.current.value,
       year: yearRef.current.value,
       editor: editorRef.current.value,
       summary: SummaryRef.current.value,
       image: imageRef.current.value,
       author: authorRef.current.value,
-    });
+    };
+    // Version avec Fetch
+    // fetch("https://filmstore-409b9-default-rtdb.firebaseio.com/Films.json", {
+    //   method: "POST",
+    //   body: JSON.stringify(newBook),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // }).then((response) => {
+    //   alert("Livre ajouté avec succès");
+    //   navigate("/all");
+    // });
+
+    //Version avec Axios
+    axios
+      .post(
+        "https://filmstore-409b9-default-rtdb.firebaseio.com/Films.json",
+        newBook
+      )
+      .then((response) => {
+        alert("Livre ajouté avec succès");
+        navigate("/all");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   return (
     <form className={classes.form} onSubmit={submitHandler}>
