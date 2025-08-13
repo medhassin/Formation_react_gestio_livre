@@ -1,6 +1,5 @@
 
 import { Route, Routes } from 'react-router'
-import './App.css'
 import Accueil from './pages/Accueil'
 import AllBooks from './pages/AllBooks'
 import Favourites from './pages/Favourites'

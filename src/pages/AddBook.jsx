@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import BookFormV2 from "../components/BookFormV2";
 
-export default function AddBook() {
-  return (
-    <div>
-      AddBook
-    </div>
-  )
+function AddBook() {
+  return <BookFormV2></BookFormV2>;
 }
+
+export default AddBook;
