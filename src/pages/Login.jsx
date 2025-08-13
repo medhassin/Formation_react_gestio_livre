@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classes from "./Login.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router";
 function Login() {
   const [showLogin, setShowLogin] = useState(false);
   const [formValue, setFormValue] = useState({
@@ -8,6 +9,7 @@ function Login() {
     password: "azerty",
     username: "mohamed",
   });
+  let navigate = useNavigate();
   console.log("STATE", formValue);
 
   function toggleShowLogin() {
@@ -17,6 +19,30 @@ function Login() {
   function submitHandler(e) {
     e.preventDefault();
     if (showLogin) {
+        fetch("https://gestion-livre-49710-default-rtdb.firebaseio.com/users.json")
+        .then((res) => res.json())
+        .then((data) => {
+          let find = false;
+          for (const key in data) {
+            if (
+              data[key].login == formValue.login &&
+              data[key].password == formValue.password
+            ) {
+              alert("Connected");
+              navigate("/all");
+              find = true;
+            }
+          }
+          if (!find) {
+            alert("Indentifiants Invalides...");
+            setFormValue({
+              email: "",
+              password: "",
+              username: "",
+            });
+          }
+        });
+        
     } else {
       axios
         .post(
