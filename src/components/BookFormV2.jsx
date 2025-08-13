@@ -16,7 +16,7 @@ function BookFormV2() {
   let [authors, setAuthors] = useState([]);
   useEffect(() => {
     axios
-      .get("https://filmstore-409b9-default-rtdb.firebaseio.com/authors.json")
+      .get("https://gestion-livre-49710-default-rtdb.firebaseio.com/authors.json")
       .then((response) => {
         let newTab = Object.keys(response.data).map((cle) => ({
           id: cle,
@@ -55,7 +55,7 @@ function BookFormV2() {
     //Version avec Axios
     axios
       .post(
-        "hhttps://filmstore-409b9-default-rtdb.firebaseio.com/Films.json",
+        "https://gestion-livre-49710-default-rtdb.firebaseio.com/Films.json",
         newBook
       )
       .then((response) => {
