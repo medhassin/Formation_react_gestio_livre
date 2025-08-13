@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./BookForm.module.css";
 import axios from "axios";
@@ -40,7 +41,7 @@ function BookFormV2() {
       author: authorRef.current.value,
     };
     // Version avec Fetch
-    // fetch("https://filmstore-409b9-default-rtdb.firebaseio.com/Films.json", {
+    // fetch("https://filmstore-409b9-default-rtdb.firebaseio.com/authors.json", {
     //   method: "POST",
     //   body: JSON.stringify(newBook),
     //   headers: {
@@ -54,7 +55,7 @@ function BookFormV2() {
     //Version avec Axios
     axios
       .post(
-        "https://filmstore-409b9-default-rtdb.firebaseio.com/Films.json",
+        "hhttps://filmstore-409b9-default-rtdb.firebaseio.com/Films.json",
         newBook
       )
       .then((response) => {
@@ -84,7 +85,7 @@ function BookFormV2() {
         <input type="url" ref={imageRef} />
       </div>
       <div className={classes.control}>
-        <label htmlFor="">Image</label>
+        <label htmlFor="">Summary</label>
         <textarea cols={4} rows={4} ref={SummaryRef} />
       </div>
       <div className={classes.control}>
