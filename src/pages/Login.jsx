@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import classes from "./Login.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { LoginContext } from "../store/LoginContext";
 function Login() {
   const [showLogin, setShowLogin] = useState(false);
   const [formValue, setFormValue] = useState({
-    email: "mohamed@gmail.com",
-    password: "azerty",
-    username: "mohamed",
+    email: "",
+    password: "",
+    username: "",
   });
   let navigate = useNavigate();
-  console.log("STATE", formValue);
-
+  let logCtx = useContext(LoginContext);
   function toggleShowLogin() {
     setShowLogin((previous) => !previous);
   }
@@ -19,7 +19,7 @@ function Login() {
   function submitHandler(e) {
     e.preventDefault();
     if (showLogin) {
-        fetch("https://gestion-livre-49710-default-rtdb.firebaseio.com/users.json")
+      fetch("tps://filmstore-409b9-default-rtdb.firebaseio.com/users.json")
         .then((res) => res.json())
         .then((data) => {
           let find = false;
@@ -29,6 +29,7 @@ function Login() {
               data[key].password == formValue.password
             ) {
               alert("Connected");
+              logCtx.seConnecter(data[key].role);
               navigate("/all");
               find = true;
             }
@@ -42,11 +43,10 @@ function Login() {
             });
           }
         });
-        
     } else {
       axios
         .post(
-          "https://gestion-livre-49710-default-rtdb.firebaseio.com/users.json",
+          "tps://filmstore-409b9-default-rtdb.firebaseio.com/users.json",
           { ...formValue, role: "user" }
         )
         .then((response) => {

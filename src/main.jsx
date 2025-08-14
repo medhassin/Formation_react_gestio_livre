@@ -3,11 +3,14 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router";
 import FavouriteContextProvider from "./store/FavouritesContext.jsx";
+import LoginContextProvider from "./store/LoginContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-  <FavouriteContextProvider>
+    <LoginContextProvider>
+      <FavouriteContextProvider>
         <App />
-  </FavouriteContextProvider>
+      </FavouriteContextProvider>
+    </LoginContextProvider>
   </BrowserRouter>
 );
