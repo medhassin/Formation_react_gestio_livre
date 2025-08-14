@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./BookItem.css";
 import Card from "./Card";
 import { replace, useNavigate } from "react-router";
+import { FavouriteContext } from "../store/FavouritesContext";
 function BookItem(props) {
   let navigate = useNavigate();
+  let favCtx = useContext(FavouriteContext);
+  console.log(favCtx);
+
   return (
     <div
       onClick={() => navigate(`/films/${props.unLivre.id}`, { replace: false })}
