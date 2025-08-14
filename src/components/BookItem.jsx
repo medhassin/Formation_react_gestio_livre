@@ -6,15 +6,22 @@ import { FavouriteContext } from "../store/FavouritesContext";
 function BookItem(props) {
   let navigate = useNavigate();
   let favCtx = useContext(FavouriteContext);
-  console.log(favCtx);
+
+  function toggleFavourite() {
+    if (favCtx.isFavourite(props.unLivre.id))
+      favCtx.removeFavourite(props.unLivre);
+    else favCtx.addFavourite(props.unLivre);
+  }
 
   return (
-    <div
-      onClick={() => navigate(`/films/${props.unLivre.id}`, { replace: false })}
-      className="item col-md-4"
-    >
+    <div className="item col-md-4">
       <Card>
-        <div className="image">
+        <div
+          className="image"
+          onClick={() =>
+            navigate(`/films/${props.unLivre.id}`, { replace: false })
+          }
+        >
           <img src={props.unLivre.image}></img>
         </div>
         <div className="content">
@@ -22,7 +29,11 @@ function BookItem(props) {
           <address> {props.unLivre.year} </address>
         </div>
         <div className="actions">
-          <button>Add to Favourites</button>
+          <button onClick={toggleFavourite}>
+            {favCtx.isFavourite(props.unLivre.id)
+              ? "Remove from Favourites"
+              : "Add to Favourites"}
+          </button>
         </div>
       </Card>
     </div>

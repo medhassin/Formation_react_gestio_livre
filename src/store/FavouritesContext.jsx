@@ -12,6 +12,8 @@ function FavouriteContextProvider(props) {
   const [tabFav, setTabFav] = useState([]);
 
   function ajouterFavori(book) {
+    console.log(book);
+
     setTabFav((previous) => [...previous, book]);
   }
 
@@ -26,7 +28,7 @@ function FavouriteContextProvider(props) {
   }
 
   let c = {
-    nbFavourites: 10,
+    nbFavourites: tabFav.length,
     tabFavourites: tabFav,
     addFavourite: ajouterFavori,
     removeFavourite: supprimerFavori,

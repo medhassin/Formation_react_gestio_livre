@@ -6,6 +6,8 @@ import FavouriteContextProvider from "./store/FavouritesContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <App />
+  <FavouriteContextProvider>
+        <App />
+  </FavouriteContextProvider>
   </BrowserRouter>
 );

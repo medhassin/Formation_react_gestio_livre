@@ -1,29 +1,45 @@
-import React from 'react'
+import React, { useContext } from "react";
 import classes from "./navbar.module.css";
-import { Link, NavLink } from "react-router"
-export default function Navbar() {
+import { Link, NavLink } from "react-router";
+import { FavouriteContext } from "../store/FavouritesContext";
+
+function Navbar() {
+  let favCtx = useContext(FavouriteContext);
   return (
     <div className={classes.header}>
-        <div className={classes.logo}>Book Shop</div>
-        <ul>
-            <li><Link to="/">Accueil</Link></li>
-            <li><Link to="/all">All Books</Link> </li>
-            <li><Link to="/Add">Add Books</Link></li>
-            <li>
-              {/*<Link to="/Favourites">Favourites</Link>*/}
-              <NavLink to="/favourites">
-              {({ isActive }) => {
-                return (
-                  <span className={isActive ? classes.activeclasse : null}>
-                    Faourites 
+      <div className={classes.logo}>Book Shop</div>
+      <ul>
+        <li>
+          <Link to="/">Accueil</Link>
+        </li>
+        <li>
+          <Link to="/all">All Books</Link>
+        </li>
+        <li>
+          <Link to="/add">Add</Link>
+        </li>
+        <li>
+          {/* <Link to="/favourites">Favourites</Link> */}
+          <NavLink to="/favourites">
+            {({ isActive }) => {
+              console.log(isActive);
+              return (
+                <span className={isActive ? classes.activeclasse : null}>
+                  Favourites
+                  <span class="badge text-bg-secondary">
+                    {favCtx.nbFavourites}
                   </span>
-                  
-                );
-              }}
-              </NavLink>
-              </li>
-              <li><Link to="/Login">Login</Link></li>
-        </ul>
+                </span>
+              );
+            }}
+          </NavLink>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+      </ul>
     </div>
-  )
+  );
 }
+
+export default Navbar;

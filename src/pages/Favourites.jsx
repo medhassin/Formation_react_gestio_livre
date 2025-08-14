@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from "react";
+import BookList from "../components/BookList";
+import { FavouriteContext } from "../store/FavouritesContext";
 
-export default function Favourites() {
-  return (
-    <div>
-      Favourites
-    </div>
-  )
+function Favourites() {
+  let favCtx = useContext(FavouriteContext);
+  return <BookList livres={favCtx.tabFavourites}></BookList>;
 }
+
+export default Favourites;
