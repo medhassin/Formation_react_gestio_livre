@@ -34,7 +34,7 @@ function BookFormV2() {
     e.preventDefault();
     let newBook = {
       title: titleRef.current.value,
-      year: yearRef.current.value,
+      year: Number(yearRef.current.value),
       editor: editorRef.current.value,
       summary: SummaryRef.current.value,
       image: imageRef.current.value,
