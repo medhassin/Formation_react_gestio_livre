@@ -8,17 +8,21 @@ export let LoginContext = createContext({
 });
 
 function LoginContextProvider(props) {
-  const [isLogged, setIsLogged] = useState(false);
-  const [role, setRole] = useState("");
+  const [isLogged, setIsLogged] = useState(
+    localStorage.getItem("myRole") ? true : false
+  );
+  const [role, setRole] = useState(localStorage.getItem("myRole"));
 
   function seConnecter(newRole) {
     setIsLogged(true);
     setRole(newRole);
+    localStorage.setItem("myRole", newRole);
   }
 
   function seDeConnecter() {
     setIsLogged(false);
     setRole("");
+    localStorage.removeItem("myRole");
   }
 
   let c = {
@@ -29,7 +33,7 @@ function LoginContextProvider(props) {
   };
 
   return (
-    <LoginContextProvider value={c}>{props.children}</LoginContextProvider>
+    <LoginContext.Provider value={c}>{props.children}</LoginContext.Provider>
   );
 }
 

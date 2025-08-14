@@ -39,7 +39,7 @@ function Navbar() {
               </NavLink>
             </li>
             <li>
-              <a>Logout</a>
+              <a onClick={() => loginCtx.seDeconnecter()}>Logout</a>
             </li>
           </ul>
         </div>
@@ -59,24 +59,26 @@ function Navbar() {
               <Link to="/authors">Authors</Link>
             </li>
             <li>
-              <a>Logout</a>
+              <a onClick={() => loginCtx.seDeconnecter()}>Logout</a>
             </li>
           </ul>
         </div>
       );
     }
   } else {
-    <div className={classes.header}>
-      <div className={classes.logo}>Book Shop</div>
-      <ul>
-        <li>
-          <Link to="/">Accueil</Link>
-        </li>
-        <li>
-          <Link to="/login">login</Link>
-        </li>
-      </ul>
-    </div>;
+    return (
+      <div className={classes.header}>
+        <div className={classes.logo}>Book Shop</div>
+        <ul>
+          <li>
+            <Link to="/">Accueil</Link>
+          </li>
+          <li>
+            <Link to="/login">login</Link>
+          </li>
+        </ul>
+      </div>
+    );
   }
 }
 

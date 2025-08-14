@@ -13,9 +13,9 @@ import Authors from "./admin/Authors";
 
 function App() {
   let logCtx = useContext(LoginContext);
-
+  console.log(logCtx);
   if (logCtx.isLogged) {
-    if (logCtx.role == "user")
+    if (logCtx.role == "user") {
       return (
         <>
           <Navbar></Navbar>
@@ -34,7 +34,7 @@ function App() {
           </Routes>
         </>
       );
-    else
+    } else {
       return (
         <>
           <Navbar></Navbar>
@@ -46,6 +46,7 @@ function App() {
           </Routes>
         </>
       );
+    }
   } else {
     return (
       <>

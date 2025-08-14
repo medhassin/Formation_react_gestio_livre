@@ -10,14 +10,14 @@ function BookDetails() {
 
   useEffect(() => {
     fetch(
-      `https://filmstore-409b9-default-rtdb.firebaseio.com/Films/${filmId}.json`
+      `https://gestion-livre-49710-default-rtdb.firebaseio.com/Films/${filmId}.json`
     )
       .then((response) => response.json())
       .then((data) => {
         setSelectedBook(data);
         axios
           .get(
-            `https://filmstore-409b9-default-rtdb.firebaseio.com/authors/${data.author}.json`
+            `https://gestion-livre-49710-default-rtdb.firebaseio.com/authors/${data.author}.json`
           )
           .then((response) => {
             console.log(response.data);

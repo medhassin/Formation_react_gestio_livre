@@ -19,7 +19,7 @@ function Login() {
   function submitHandler(e) {
     e.preventDefault();
     if (showLogin) {
-      fetch("tps://filmstore-409b9-default-rtdb.firebaseio.com/users.json")
+      fetch("https://gestion-livre-49710-default-rtdb.firebaseio.com/users.json")
         .then((res) => res.json())
         .then((data) => {
           let find = false;
@@ -30,7 +30,7 @@ function Login() {
             ) {
               alert("Connected");
               logCtx.seConnecter(data[key].role);
-              navigate("/all");
+              navigate("/");
               find = true;
             }
           }
@@ -46,7 +46,7 @@ function Login() {
     } else {
       axios
         .post(
-          "tps://filmstore-409b9-default-rtdb.firebaseio.com/users.json",
+          "https://gestion-livre-49710-default-rtdb.firebaseio.com/users.json",
           { ...formValue, role: "user" }
         )
         .then((response) => {
